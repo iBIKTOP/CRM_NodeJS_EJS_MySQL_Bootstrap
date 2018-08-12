@@ -1,0 +1,29 @@
+<% include layouts/header.ejs%>
+<ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Главная</a></li>
+    <li class="breadcrumb-item"><a href="/customers">Список пользователей</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Редактирование данных пользователя</li>
+</ol>
+<form method="post" action="/customers/edit/<%= data[0].id %>" class="col-md-4">
+    <div class="form-group">
+        <label for="name">Имя</label>
+        <input type="text" class="form-control" name="name" placeholder="name" value="<%= data[0].name %>" required>
+    </div>
+
+    <div class="form-group">
+        <label for="address">Адресс</label>
+        <textarea class="form-control" rows="3" name="address" id="address" placeholder="address" required><%= data[0].address %></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" placeholder="email" name="email" value="<%= data[0].email %>"required>
+    </div>
+    <div class="form-group">
+        <label for="phone">Tel</label>
+        <input type="text" class="form-control" id="phone" placeholder="phone" name="phone" value="<%= data[0].phone %>"required>
+    </div>
+    <button type="submit" class="btn btn-primary" name="Save" value="Save">Сохранить изменения</button>
+    <button type="submit" class="btn btn-primary" name="Cancel" value="Cancel" onclick="window.location.href = '/customers';">Отменить</button>
+</form>
+<% include layouts/footer.ejs%>

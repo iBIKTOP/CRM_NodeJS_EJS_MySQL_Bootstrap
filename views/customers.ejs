@@ -1,0 +1,43 @@
+<% include layouts/header.ejs %>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Главная</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Список пользователей</li>
+            </ol>
+        </nav>
+        <table class="table table-bordered">
+            <thead class="thead-light">
+                <tr>
+                    <th width="10px">№</th>
+                    <th class="w-25">Имя</th>
+                    <th class="w-25">Адресс</th>
+                    <th>Почта</th>
+                    <th>Телефон</th>
+                    <th>Действия</th>
+                </tr>
+            </thead>
+            <% if (data.length) {
+                for (var i=0; i < data.length; i++) { %>
+                    <tr>
+                        <td><%= (i+1) %></td>
+                        <td><%= data[i].name %></td>
+                        <td><%= data[i].address %></td>
+                        <td><%= data[i].email %></td>
+                        <td><%= data[i].phone %></td>
+                        <td>
+                            <a class="btn btn-success btn-sm" style="text-decoration: none; color: white" href="../customers/edit/<%= data[i].id %>">Изменить</a>
+                            <a class="btn btn-danger btn-sm" href="../customers/delete/<%= data[i].id %>">Удалить</a>
+                        </td>
+                    </tr>
+                <% }
+            } else { %>
+                <tr>
+                    <td colspan="3">No User</td>
+                </tr>
+            <% } %>
+        </table>
+        <div class="data-btn">
+            <button type="button" class="btn btn-danger btn-sm col-md-1 col-md-offset-11" onclick="window.location.href = '/customers/add';">Добавить</button>
+        </div>
+    </div>
+<% include layouts/footer.ejs %>
